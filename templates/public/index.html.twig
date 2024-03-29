@@ -1,20 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PublicController!{% endblock %}
+{% block title %}Home{% endblock %}
 
-{% block body %}
+{% block stylesheets %}
+
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+background-color: #fbfffe;
+    
+*{
+    font-family: 'Poppins';
+}
+.encadre{
+    background-color: #cafafe;
+    
+}
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{% endblock %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/app/src/Controller/PublicController.php</code></li>
-        <li>Your template at <code>/app/templates/public/index.html.twig</code></li>
-    </ul>
+{% block body %}
+
+
+
+<div class="example-wrapper">
+    <a href="{{path('app_login')}}">
+    <button class="login-btn" >Login</button>
+    </a>
+
+    <a href="{{path('app_register')}}">
+    <button class="register-btn" >Register</button>
+    </a>
+
+
+    <h1>Articles</h1>
+
+    
+    {% for article in articles %}
+        <div class='encadre'>
+            <a href="/article/{{article.id}}">{{article.title}}</a>
+            <h4>{{article.author}}</h4>
+        </div>
+
+    {% endfor %}    
+
 </div>
 {% endblock %}
