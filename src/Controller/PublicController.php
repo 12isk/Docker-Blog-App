@@ -4,27 +4,22 @@ namespace App\Controller;
 
 use App\Repository\ArticleRepository;
 use App\Repository\CommentRepository;
+
 use App\Entity\Article;
+use App\Entity\Comment;
+use App\Form\CommentFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class PublicController extends AbstractController
 {
-    //TODO create a Home Route (will show articles)
-    //TODO Load articles
-    //TODO Pass articles to twig view
-    //TODO Modify TWIGview to see the articles
-
-    //TODO Create another Route 'Article' -> will show article + comments
-    //TODO Charge a single article + comments 
-    //TODO Pass info to TWIG view
-    //TODO Modify TWIG view
+    //TODO CREATE A COMMENT FORM
     
-    //TODO Link to Home TWIG view 
-
 
     private ArticleRepository $articleRepository;
+    
+    
 
     public function __construct(ArticleRepository $articleRepository){
         $this->articleRepository = $articleRepository;
@@ -48,10 +43,15 @@ class PublicController extends AbstractController
     public function showArticle(int $id): Response{
 
         $article = $this->articleRepository->find($id);
+
+        
+
         
         return $this->render('public/article.html.twig', [
             'article' => $article,
-            'comments' => $article->getComments()
+            'comments' => $article->getComments(),
+            
         ]);
+    }
 }
-}
+

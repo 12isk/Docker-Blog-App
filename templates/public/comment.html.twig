@@ -49,14 +49,14 @@ body{
     font-size: 8;
 }
 
-.btn-comment{
+.submit-btn{
     display: flex;
     min-height: 30px;
     padding: 5px;
     background-color: #f8958c;
     border-radius: 5px;
     border:0px;
-
+    
 }
 
 
@@ -66,40 +66,29 @@ body{
 
 {% block body %}
 
-
-<div class="wrapper">
-    
-    <div class= "heading">
-        <h1> {{article.title}} </h1>
-        <h5> Auteur: {{article.author}} </h5>
-        <h6> {{article.pubDate | date('d-m-Y')}}</h5>
-
-        
-    </div>
-
-    <div class="text">
-        {{article.content}}
-
-        <div class="comment-wrapper">
-            {% for comment in comments %}
-                <div class="comment">
-                    <h6>{{comment.text ~ " by "}}<h6>
-                    <h6>{{" - " ~ comment.author ~ " @ " ~ comment.pubDate | date('d-m-Y')}}</h6>
-                </div>
-            {% endfor %}
-
-            <button class="btn-comment" onclick="window.location.href='{{path('app_comment')}}'">
-                Add comment
-            </button> 
-
-             
+<div class="add_comment">
+    {{ form_start(form) }}
+        <div class="my-custom-class-for-errors">
+            {{ form_errors(form) }}
         </div>
-    </div>
+
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.author) }}
+            </div>
+            <div class="col" id="some-custom-id">
+                {{ form_row(form.text) }}
+            </div>
+        </div>
+
+    <button class="submit-btn" type="submit">
+        Submit
+    </button>
+    {{ form_end(form) }}
 
     
+</div> 
 
-</div>
+     
 
-    
-</div>
 {% endblock %}

@@ -85,6 +85,7 @@ class Article
 
         return $this;
     }
+    
 
     public function getPubDate(): ?\DateTimeInterface
     {
