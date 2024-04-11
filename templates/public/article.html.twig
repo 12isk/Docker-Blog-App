@@ -49,7 +49,7 @@ body{
     font-size: 8;
 }
 
-.btn-comment{
+.btn{
     display: flex;
     min-height: 30px;
     padding: 5px;
@@ -77,6 +77,14 @@ body{
         
     </div>
 
+    {% if is_granted('ROLE_ADMIN') %}
+
+        <button class="btn" onclick="window.location.href='{{path('app_mod_art', {id:article.id})}}'">
+            Modify article
+        </button>
+
+    {% endif %}
+
     <div class="text">
         {{article.content}}
 
@@ -88,7 +96,7 @@ body{
                 </div>
             {% endfor %}
 
-            <button class="btn-comment" onclick="window.location.href='{{path('app_comment')}}'">
+            <button class="btn" onclick="window.location.href='{{path('app_comment')}}'">
                 Add comment
             </button> 
 

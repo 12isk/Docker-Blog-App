@@ -1,12 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Hello PublicController!{% endblock %}
 
 {% block stylesheets %}
 
-<style>
-background-color: #fbfffe;
-    
 <style>
 
 *{
@@ -69,39 +66,29 @@ body{
 
 {% block body %}
 
-
-
-<div class="example-wrapper">
-    
-    
-    <a href="{{path('app_login')}}">
-        <button class="btn" id="login-btn" >Login</button>
-        </a>
-
-        <a href="{{path('app_register')}}">
-        <button  class="btn"  id="register-btn" >Register</button>
-        </a>
-
-    
-
-
-    <h1>Articles</h1>
-
-    {% if is_granted('ROLE_ADMIN') %}
-
-        <button class="add-art-btn" onclick="window.location.href='{{path('app_create_art')}}'">
-        Add Article
-        </button>
-
-    {% endif %}
-    
-    {% for article in articles %}
-        <div class='encadre'>
-            <a href="/article/{{article.id}}">{{article.title}}</a>
-            <h4>{{article.author}}</h4>
+<div class="add_comment">
+    {{ form_start(form) }}
+        <div class="my-custom-class-for-errors">
+            {{ form_errors(form) }}
         </div>
 
-    {% endfor %}    
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.author) }}
+            </div>
+            <div class="col" id="some-custom-id">
+                {{ form_row(form.content) }}
+            </div>
+        </div>
 
-</div>
+    <button class="submit-btn" type="submit">
+        Submit
+    </button>
+    {{ form_end(form) }}
+
+    
+</div> 
+
+     
+
 {% endblock %}

@@ -35,6 +35,7 @@ class PublicController extends AbstractController
 
         return $this->render('public/index.html.twig', [
             'articles' => $articles,
+            'user'=> $this->getUser(),
         ]);
 
     }
